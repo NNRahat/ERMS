@@ -20,8 +20,11 @@ if(isset($_POST['submit']))
     $Email=$_POST['Email'];
     $EmpContactNo=$_POST['EmpContactNo'];
     $gender=$_POST['gender'];
+    $Birth=$_POST['Birth'];
     $empjdate=$_POST['EmpJoingdate']; 
-    $query=mysqli_query($con, "update employeedetail set EmpFname='$FName',  EmpLName='$LName', EdID='$EdID', EmpDept='$EmpDept', Designation='$Designation', EmpContactNo='$EmpContactNo', EmpGender='$gender',EmpJoingdate='$empjdate',salary='$salary',EmpEmail='$Email' where EdID='$eid'");
+    $query=mysqli_query($con, "update employeedetail,employee set EmpFname='$FName',  EmpLName='$LName', 
+    Designation='$Designation',EmpContactNo='$EmpContactNo',EmpEmail='$Email',BirthDate='$Birthdate', 
+    EmpGender='$gender',EmpJoingdate='$empjdate' where EdID='$eid' and EmpID='$eid'");
     if ($query) {
     $msg="Employee profile has been updated.";
     
@@ -102,13 +105,13 @@ while ($row=mysqli_fetch_array($ret)) {
                     <div class="row">
                     <div class="col-4 mb-3">Employee Code </div>
                     <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="EdID" name="EdID" aria-describedby="emailHelp" value="<?php  echo $row['EdID'];?>"></div>
+                      <input type="text" class="form-control form-control-user" id="EdID" name="EdID" aria-describedby="emailHelp" value="<?php  echo $row['EdID'];?>" readonly = "true"></div>
                     </div>
 
                     <div class="row">
                       <div class="col-4 mb-3">Employee Dept</div>
                      <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="EmpDept" name="EmpDept" aria-describedby="emailHelp" value="<?php  echo $row['Department'];?>">
+                      <input type="text" class="form-control form-control-user" id="EmpDept" name="EmpDept" aria-describedby="emailHelp" value="<?php  echo $row['Department'];?>" readonly = "true">
                     </div></div>
                     <div class="row">
                     <div class="col-4 mb-3">Employee Desigantion</div>
@@ -119,7 +122,7 @@ while ($row=mysqli_fetch_array($ret)) {
                     <div class="row">
                       <div class="col-4 mb-3">Employee Salary</div>
                       <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="salary" name="salary" aria-describedby="emailHelp" value="<?php  echo $row['Salary'];?>">
+                      <input type="text" class="form-control form-control-user" id="salary" name="salary" aria-describedby="emailHelp" value="<?php  echo $row['Salary'];?>" readonly = "true">
                     </div></div>
                     <div class="row">
                       <div class="col-4 mb-3">Employee Contact No.</div>
@@ -131,11 +134,11 @@ while ($row=mysqli_fetch_array($ret)) {
                    <div class="col-8 mb-3">
                        <input type="text" class="form-control form-control-user" id="Email" name="Email" aria-describedby="emailHelp" value="<?php  echo $row['EmpEmail'];?>" readonly="true">
                     </div></div>
-                    <div class="row">
+                    <!-- <div class="row">
                     <div class="col-4 mb-3">Birth Date</div>
                    <div class="col-8 mb-3">
-                       <input type="text" class="form-control form-control-user" id="Email" name="Email" aria-describedby="emailHelp" value="<?php  echo $row['BirthDate'];?>">
-                    </div></div>
+                       <input type="text" class="form-control form-control-user" id="Birth" name="Birth" aria-describedby="emailHelp" value="<?php  echo $row['BirthDate'];?>">
+                    </div></div> -->
 
                     <div class="row">
                       <div class="col-4 mb-3">Employee Joing Date(yyyy-mm-dd)</div>

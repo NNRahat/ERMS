@@ -114,7 +114,7 @@ while ($row=mysqli_fetch_array($ret)) {
     <div class="row">
         <div class="col-4 mb-3">Employee Desigantion</div>
         <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="Designation" name="Designation" aria-describedby="emailHelp" required="true" value="<?php  echo $row['Designation'];?>"readonly="true">
+                      <input type="text" class="form-control form-control-user" id="Designation" name="Designation" aria-describedby="emailHelp" required="true" value="<?php  echo $row['Designation'];?>" readonly="true">
     </div></div>
                     <div class="row">
                       <div class="col-4 mb-3">Employee Contact No.</div>
@@ -132,12 +132,6 @@ while ($row=mysqli_fetch_array($ret)) {
                       <div class="col-8 mb-3">
                       <input type="text" class="form-control form-control-user" id="salary" name="salary" aria-describedby="emailHelp" required="true" value="<?php  echo $row['Salary'];?>" readonly="true">
                     </div></div>
-                    <div class="row">
-                    <div class="col-4 mb-3">Birth Date</div>
-                   <div class="col-8 mb-3">
-                       <input type="text" class="form-control form-control-user" id="Birthdate" name="Birthdate" aria-describedby="emailHelp" value="<?php  echo $row['BirthDate'];?>">
-                    </div></div>
-
                     <div class="row">
                       <div class="col-4 mb-3">Employee Joing Date(yyyy-mm-dd)</div>
                     <div class="col-8  mb-3">

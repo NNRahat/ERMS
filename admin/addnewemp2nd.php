@@ -23,7 +23,7 @@ if(isset($_POST['submit']))
     $query=mysqli_query($con, "insert into employeedetail(EmpFname, EmpLName, EdID,Designation,BirthDate, EmpContactNo, EmpGender,EmpJoingdate) value('$FName', '$LName', '$Empid','$Designation','$empBirth','$EmpContactNo','$gender','$empjdate')");
      if ($query) { 
        $msg1="New employee added";
-       header('location:addnewemp.php'); 
+       header('location:addnewemp3rd.php'); 
      }  
      else
      {
@@ -108,7 +108,7 @@ if(isset($_POST['submit']))
                     <div class="row">
                       <div class="col-4 mb-3">Employee Contact No.</div>
                     <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="EmpContactNo" name="EmpContactNo" aria-describedby="emailHelp" value="" required="true">
+                      <input type="text" class="form-control form-control-user" id="EmpContactNo" name="EmpContactNo" aria-describedby="emailHelp" value="+880" required="true">
                     </div></div>
                     <div class="row">
                     <div class="col-4 mb-3">Employee Birth Date<b>(yyyy-mm-dd)</b></div>
@@ -134,65 +134,7 @@ if(isset($_POST['submit']))
   <input type="radio" name="gender" value="Female" checked="true">Female
                    <?php }?>
                     </div></div>
- <!-- <hr>                
- <br>
- <h1 class="h3 mb-4 text-gray-800">Employees education</h1>
 
-                    <div class="row">
-                    <div class="col-4 mb-3">Year of Passing Graduation </div>
-                    <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="yopgra" name="yopgra" aria-describedby="emailHelp" value="<?php // echo $row['YearPassingGra'];?>"></div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-4 mb-3">Percentage in Graduation</div>
-                     <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="pigra" name="pigra" aria-describedby="emailHelp" value="<?php // echo $row['PercentageGra'];?>">
-                    </div></div>
-                    <div class="row">
-                <div class="col-4 mb-3">Course SSC</div>
-                   <div class="col-8 mb-3">   <input type="text" class="form-control form-control-user" id="coursessc" name="coursessc" aria-describedby="emailHelp" value="<?php // echo $row['CourseSSC'];?>"></div>
-                    </div>  
-                    <div class="row">
-                      <div class="col-4 mb-3">School/College SSC </div>
-                     <div class="col-8 mb-3">  <input type="text" class="form-control form-control-user" id="schoolclgssc" name="schoolclgssc" aria-describedby="emailHelp" value="<?php // echo $row['SchoolCollegeSSC'];?>"></div>  
-                     </div>
-
-
-
-                    <div class="row">
-                    <div class="col-4 mb-3">Year of Passing SSC </div>
-                    <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="yopssc" name="yopssc" aria-describedby="emailHelp" value="<?php // echo $row['YearPassingSSC'];?>"></div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-4 mb-3">Percentage in SSC</div>
-                     <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="pissc" name="pissc" aria-describedby="emailHelp" value="<?php  //echo $row['PercentageSSC'];?>">
-                    </div></div>
-                    <div class="row">
-                <div class="col-4 mb-3">Course HSC</div>
-                   <div class="col-8 mb-3">   <input type="text" class="form-control form-control-user" id="coursehsc" name="coursehsc" aria-describedby="emailHelp" value="<?php // echo $row['CourseHSC'];?>"></div>
-                    </div>  
-                    <div class="row">
-                      <div class="col-4 mb-3">School/College HSC </div>
-                     <div class="col-8 mb-3">  <input type="text" class="form-control form-control-user" id="schoolclghsc" name="schoolclghsc" aria-describedby="emailHelp" value="<?php // echo $row['SchoolCollegeHSC'];?>"></div>  
-                     </div>
-
-
-
-                    <div class="row">
-                    <div class="col-4 mb-3">Year of Passing HSC </div>
-                    <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="yophsc" name="yophsc" aria-describedby="emailHelp" value="<?php  //echo $row['YearPassingHSC'];?>"></div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-4 mb-3">Percentage in HSC</div>
-                     <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="pihsc" name="pihsc" aria-describedby="emailHelp" value="<?php  //echo $row['PercentageHSC'];?>">
-                    </div></div> -->
 
                     <div class="row" style="margin-top:4%">
                       <div class="col-4"></div>

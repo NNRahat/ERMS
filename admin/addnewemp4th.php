@@ -3,14 +3,16 @@ session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
 //error_reporting(0);
-if (strlen($_SESSION['aid']==0)) {
-  header('location:logout.php');
-  } else{
-
+// if (strlen($_SESSION['aid']==0)) {
+//   header('location:logout.php');
+//   } else{
+  
+  
 
 if(isset($_POST['submit']))
   {
-    $eid=$_GET['editid'];
+   
+    $Empid=$_POST['ExpID'];
     $emp1name=$_POST['emp1name'];
     $emp1des=$_POST['emp1des'];
     $emp1ctc=$_POST['emp1ctc'];
@@ -19,34 +21,26 @@ if(isset($_POST['submit']))
     $emp2des=$_POST['emp2des'];
     $emp2ctc=$_POST['emp2ctc'];
     $emp2wd=$_POST['emp2workduration'];
-    $emp3name=$_POST['emp3name'];
-    $emp3des=$_POST['emp3des'];
-    $emp3ctc=$_POST['emp3ctc'];
-    $emp3wd=$_POST['emp3workduration'];
-
-     $query=mysqli_query($con, "update empexpireince set Employer1Name='$emp1name',  Employer1Designation ='$emp1des', Employer1CTC ='$emp1ctc', Employer1WorkDuration='$emp1wd', Employer2Name='$emp2name',  Employer2Designation ='$emp2des', Employer2CTC ='$emp2ctc', Employer2WorkDuration='$emp2wd' where ExpID='$eid'");
-    if ($query) {
-    $msg="Employee Expirence has been updated.";
-  }
-  else
-    {
+    $query=mysqli_query($con, "insert into empexpireince ( ExpID,Employer1Name, Employer1Designation, Employer1CTC,  Employer1WorkDuration, 
+    Employer2Name,  Employer2Designation, Employer2CTC, Employer2WorkDuration) value('$Empid','$emp1name', '$emp1des', '$emp1ctc', '$emp1wd', '$emp2name', '$emp2des', '$emp2ctc', 
+     '$emp2wd' )");
+     if ($query) { 
+        echo "<script>alert('Employee Added Successfully');</script>";
+        echo "<script>window.location.href='addnewemp.php'</script>";
+     }  
+     else
+     {
       $msg="Something Went Wrong. Please try again.";
-    }
+     }
   }
+
   ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Edit Employee Expirence</title>
+  <title>Add a new employee</title>
 
   <!-- Custom fonts for this template-->
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -80,70 +74,66 @@ if(isset($_POST['submit']))
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Edit Employee Expirence</h1>
+          <h1 class="h3 mb-4 text-gray-800">Add a new employee</h1>
 
-<p style="font-size:16px; color:red" align="center"> <?php if($msg){
+<p style="font-size:16px; color:green" align="center"> <?php if($msg){
     echo $msg;
   }  ?> </p>
-
-<form class="user" method="post" action="">
-  <?php
- $aid=$_GET['editid'];
-$ret=mysqli_query($con,"select * from empexpireince where ExpID='$aid'");
-$cnt=1;
-while ($row=mysqli_fetch_array($ret)) {
-
+  <p style="font-size:16px; color:green" align="center"> <?php if($msg1){
+    echo $msg1;
+  }  ?> </p>
+<?php 
+  $query = mysqli_query($con,"select EmpID FROM employee ORDER BY s_no DESC limit 1");
+  $row= mysqli_fetch_array($query);
 ?>
+ <form class="user" method="post" action="">
+                <div class="row">
+                <div class="col-4 mb-3">Employee ID</div>
+                <div class="col-8 mb-3">   <input type="text" class="form-control form-control-user" id="ExpID" name="ExpID" aria-describedby="emailHelp" value="<?php echo $row['EmpID'] ?>" required="true"></div>
+                </div>
+
                <div class="row">
                 <div class="col-4 mb-3">First Company Name</div>
-                   <div class="col-8 mb-3">   <input type="text" class="form-control form-control-user" id="emp1name" name="emp1name" aria-describedby="emailHelp" value="<?php  echo $row['Employer1Name'];?>"></div>
+                   <div class="col-8 mb-3">   <input type="text" class="form-control form-control-user" id="emp1name" name="emp1name" aria-describedby="emailHelp" value=""></div>
                     </div>
                     <div class="row">
                       <div class="col-4 mb-3">First Company Designation </div>
-                     <div class="col-8 mb-3">  <input type="text" class="form-control form-control-user" id="emp1des" name="emp1des" aria-describedby="emailHelp" value="<?php  echo $row['Employer1Designation'];?>"></div>
+                     <div class="col-8 mb-3">  <input type="text" class="form-control form-control-user" id="emp1des" name="emp1des" aria-describedby="emailHelp" value=""></div>
                      </div>
-
-
-
                     <div class="row">
                     <div class="col-4 mb-3">First Company CTC </div>
                     <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="emp1ctc" name="emp1ctc" aria-describedby="emailHelp" value="<?php  echo $row['Employer1CTC'];?>"></div>
+                      <input type="text" class="form-control form-control-user" id="emp1ctc" name="emp1ctc" aria-describedby="emailHelp" value=""></div>
                     </div>
 
                     <div class="row">
                       <div class="col-4 mb-3">First Company WorkDuration</div>
                      <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="emp1workduration" name="emp1workduration" aria-describedby="emailHelp" value="<?php  echo $row['Employer1WorkDuration'];?>">
+                      <input type="text" class="form-control form-control-user" id="emp1workduration" name="emp1workduration" aria-describedby="emailHelp" value="">
                     </div></div>
                     <div class="row">
                 <div class="col-4 mb-3">Second Company Name</div>
-                   <div class="col-8 mb-3">   <input type="text" class="form-control form-control-user" id="emp2name" name="emp2name" aria-describedby="emailHelp" value="<?php  echo $row['Employer2Name'];?>"></div>
+                   <div class="col-8 mb-3">   <input type="text" class="form-control form-control-user" id="emp2name" name="emp2name" aria-describedby="emailHelp" value=""></div>
                     </div>
                     <div class="row">
                       <div class="col-4 mb-3">Second Company Designation </div>
-                     <div class="col-8 mb-3">  <input type="text" class="form-control form-control-user" id="emp2des" name="emp2des" aria-describedby="emailHelp" value="<?php  echo $row['Employer2Designation'];?>"></div>
+                     <div class="col-8 mb-3">  <input type="text" class="form-control form-control-user" id="emp2des" name="emp2des" aria-describedby="emailHelp" value=""></div>
                      </div>
-
-
-
                     <div class="row">
                     <div class="col-4 mb-3">Second Company CTC </div>
                     <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="emp2ctc" name="emp2ctc" aria-describedby="emailHelp" value="<?php  echo $row['Employer2CTC'];?>"></div>
+                      <input type="text" class="form-control form-control-user" id="emp2ctc" name="emp2ctc" aria-describedby="emailHelp" value=""></div>
                     </div>
 
                     <div class="row">
                       <div class="col-4 mb-3">Second Company WorkDuration</div>
                      <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="emp2workduration" name="emp2workduration" aria-describedby="emailHelp" value="<?php  echo $row['Employer1WorkDuration'];?>">
+                      <input type="text" class="form-control form-control-user" id="emp2workduration" name="emp2workduration" aria-describedby="emailHelp" value="">
                     </div></div>
-                   
-<?php } ?>
                     <div class="row" style="margin-top:4%">
                       <div class="col-4"></div>
                       <div class="col-4">
-                      <input type="submit" name="submit"  value="Update" class="btn btn-primary btn-user btn-block">
+                      <input type="submit" name="submit"  value="submit" class="btn btn-primary btn-user btn-block">
                     </div>
                     </div>
 
@@ -160,14 +150,7 @@ while ($row=mysqli_fetch_array($ret)) {
       <!-- End of Main Content -->
 
       <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-           <div class="container my-auto">
-             <div class="copyright text-center my-auto">
-               <span>Group: Nurnabi Rahat, Ashikuzzaman Nayem, A.K.M Asif Mahmud</span>
-             </div>
-           </div>
-         </footer>
-   <?php// include('includes/footer.php');?>
+   <?php include_once('includes/footer.php');?>
       <!-- End of Footer -->
 
     </div>
@@ -181,7 +164,7 @@ while ($row=mysqli_fetch_array($ret)) {
     <i class="fas fa-angle-up"></i>
   </a>
 
-
+  
 
   <!-- Bootstrap core JavaScript-->
   <script src="../vendor/jquery/jquery.min.js"></script>
@@ -196,10 +179,10 @@ while ($row=mysqli_fetch_array($ret)) {
     $(".jDate").datepicker({
     format: 'yyyy-mm-dd',
     autoclose: true
-}).datepicker("update", "10/10/2016");
+}).datepicker("update", "10/10/2016"); 
   </script>
 
 </body>
 
 </html>
-<?php }  ?>
+<?php //}  ?>

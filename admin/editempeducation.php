@@ -28,7 +28,7 @@ if(isset($_POST['submit']))
     $yophsc=$_POST['yophsc'];
     $pihsc=$_POST['pihsc'];
     
-     $query=mysqli_query($con, "update empeducation set CoursePG='$coursepg', SchoolCollegePG='$schoolclgpg', YearPassingPG='$yoppg',  PercentagePG= '$pipg', CourseGra='$coursegra',  SchoolCollegeGra='$schoolclggra', YearPassingGra= '$yopgra', PercentageGra='$pigra', CourseSSC='$coursessc', SchoolCollegeSSC='$schoolclgssc', YearPassingSSC= '$yopssc', PercentageSSC= '$pissc', CourseHSC='$coursehsc', SchoolCollegeHSC='$schoolclghsc', YearPassingHSC='$yophsc', PercentageHSC='$pihsc' where EduID='$eid'");
+     $query=mysqli_query($con, "update empeducation set CourseGra='$coursegra',  SchoolCollegeGra='$schoolclggra', YearPassingGra= '$yopgra', PercentageGra='$pigra', CourseSSC='$coursessc', SchoolCollegeSSC='$schoolclgssc', YearPassingSSC= '$yopssc', PercentageSSC= '$pissc', CourseHSC='$coursehsc', SchoolCollegeHSC='$schoolclghsc', YearPassingHSC='$yophsc', PercentageHSC='$pihsc' where EduID='$eid'");
     if ($query) {
     $msg="Employee Education data has been updated succeesfully.";
   }
